@@ -1,5 +1,9 @@
 import org.junit.jupiter.api.*;
 
+//GITHUB Link
+//https://github.com/CSDC23BB-Alexander-Ammann/prog2-ss21-exercise1
+
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
