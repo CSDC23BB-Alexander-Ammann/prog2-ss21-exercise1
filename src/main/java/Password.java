@@ -1,27 +1,31 @@
+import java.security.PrivateKey;
+
 public class Password {
 
 
-    String pw;
+    private String password;
 
     public Password(String pw) {
-        this.pw = pw;
+        this.password = pw;
     }
 
     public String getPw() {
-        return pw;
+        return password;
     }
 
     public void setPw(String pw) {
-        this.pw = pw;
+        this.password = pw;
     }
 
     public boolean checkLength() {
-
-        return false;
+    if (this.password.length() >=8 && this.password.length() <=25){
+        return true;
+    }
+    return false;
     }
 
     public boolean testNumbers() {
-        char[] pwd = this.pw.toCharArray();
+        char[] pwd = this.password.toCharArray();
         for (int i = 0; i < pwd.length; i++) {
             if (pwd[i] >= 0 && pwd[i] <=9) {
                 return true;
@@ -38,7 +42,7 @@ public class Password {
 
 
     public boolean checkLetters() {
-        char[] letters = this.pw.toCharArray();
+        char[] letters = this.password.toCharArray();
         boolean upperCase = false;
         boolean lowerCase = false;
         for (int i = 0; i < letters.length; i++) {
