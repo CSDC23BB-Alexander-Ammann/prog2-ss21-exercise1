@@ -24,16 +24,6 @@ public class Password {
     return false;
     }
 
-    public boolean testNumbers() {
-        char[] pwd = this.password.toCharArray();
-        for (int i = 0; i < pwd.length; i++) {
-            if (pwd[i] >= 0 && pwd[i] <=9) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public boolean checkPasswordForSpaces(){
         return false; }
     public boolean checkPasswordIfNumbersInOrder(){
@@ -67,8 +57,14 @@ public class Password {
     }
 
     public boolean checkNumber() {
-        //muss noch programmiert werden
-        return true;
+        char[] pwd = this.password.toCharArray();
+        for (int i = 0; i < pwd.length; i++) {
+            if (Character.isDigit(pwd[i])) {
+                return true;
+            }
+        }
+        return false;
+
     }
 
     public boolean checkchars() {
