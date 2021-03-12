@@ -61,4 +61,14 @@ public class Password {
         //muss noch programmiert werden
         return  false;
     }
+
+    public boolean checkNumber() {
+        //muss noch programmiert werden
+        return true;
+    }
+
+    public boolean checkchars() {
+       //muss noch programmiert werden
+        return true;
+    }
 }

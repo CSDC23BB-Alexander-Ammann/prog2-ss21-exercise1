@@ -34,7 +34,7 @@ public class PasswordTester {
     @Test
     public void testLength_ok(){
         testPass = new Password("abcabcabcab");
-        assertFalse(testPass.checkLength());
+        assertTrue(testPass.checkLength());
 
     }
     @DisplayName("Check for uppercase and lowercase")
@@ -42,7 +42,7 @@ public class PasswordTester {
     public void testLetters_ForUpperCaseAndLowerCase() {
         testPass = new Password("asaskFGhAad");
         Boolean actual = testPass.checkLetters();
-        assertFalse(actual);
+        assertTrue(actual);
     }
     @DisplayName("Check letters if lowercase")
     @Test
@@ -60,7 +60,7 @@ public class PasswordTester {
     @Test
     public void test_IfNumbersOnly() {
         testPass = new Password("12343242351");
-        assertTrue(testPass.testNumbers());
+        assertFalse(testPass.checkLetters());
     }
     @DisplayName("Blank")
     @Test
@@ -68,23 +68,84 @@ public class PasswordTester {
         testPass = new Password("");
         assertFalse(testPass.checkLetters());
     }
-    @DisplayName("Check if Password has Space in it")
+
+    @DisplayName("Check no numbers")
+    @Test
+    public void test_ifnonum() {
+        testPass = new Password("asdijadADSA!!");
+        assertFalse(testPass.checkNumber());
+    }
+
+    @DisplayName("Check if with numbers")
+    @Test
+    public void test_ifwithnum() {
+        testPass = new Password("asdi1322jADSA!!");
+        assertTrue(testPass.checkNumber());
+    }
+    @DisplayName("No Special Characters included")
+    @Test
+    public void test_ifcharsincluded() {
+        testPass = new Password("asdi1322jADSA");
+        assertFalse(testPass.checkchars());
+    }
+
+    @DisplayName("Wrong Character used")
+    @Test
+    public void test_ifwrongcharacterused() {
+        testPass = new Password("asdi1322€jADSA");
+        assertFalse(testPass.checkchars());
+    }
+
+    @DisplayName("Character used correctly")
+    @Test
+    public void test_ifcharscorrect() {
+        testPass = new Password("asdi1322!!j?SA");
+        assertTrue(testPass.checkchars());
+    }
+    /*  @DisplayName("Check if Password has Space in it")
     @Test
     public void check_PasswordForSpaces(){
         testPass = new Password("Asads sdfdfa");
-        assertFalse(testPass.checkPasswordForSpaces());
-    }
+        assertFalse(testPass.checkLetters());
+    }*/
     @DisplayName("Check when password with 3 numbers in order")
     @Test
     public void check_PasswordIfNumbersInOrder(){
         testPass = new Password("123adaAA");
         assertFalse(testPass.checkPasswordIfNumbersInOrder());
     }
+
+    @DisplayName("Check when password with 3 numbers in order ")
+    @Test
+    public void check_PasswordIfNumbersInOrder_backwards(){
+        testPass = new Password("321adaAA");
+        assertTrue(testPass.checkPasswordIfNumbersInOrder());
+    }
+
+    @DisplayName("Check when password with 3 numbers in order")
+    @Test
+    public void check_PasswordIfNumbersInOrder_2(){
+        testPass = new Password("12adaAA");
+        assertTrue(testPass.checkPasswordIfNumbersInOrder());
+    }
+
     @DisplayName("Check Password if a number is written 4 times in a row")
     @Test
     public void check_PasswordNumberRepeating(){
-        testPass = new Password("1111");
+        testPass = new Password("1111sdfsdfsdf");
         assertFalse(testPass.checkPasswordForRepeatingNumbers());
     }
 
+    @DisplayName("Check Password if a number is written 4 times in a row")
+    @Test
+    public void check_PasswordNumberNotRepeating(){
+        testPass = new Password("111sdfsdfsdf");
+        assertTrue(testPass.checkPasswordForRepeatingNumbers());
+    }
+    @DisplayName("Check Password if a number is written 4 times in a row")
+    @Test
+    public void check_PasswordNumberNotRepeating_1(){
+        testPass = new Password("sdfsdf11sdf1111");
+        assertFalse(testPass.checkPasswordForRepeatingNumbers());
+    }
 }
